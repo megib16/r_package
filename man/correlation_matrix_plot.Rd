@@ -7,20 +7,29 @@
 correlation_matrix_plot(data, method = "pearson", title = "Correlation Matrix")
 }
 \arguments{
-\item{data}{A data frame containing the variables.}
+\item{data}{A data frame with at least two rows and one numeric column.}
 
-\item{method}{Correlation coefficient method: one of "pearson" (default), "spearman", or "kendall".}
+\item{method}{Correlation coefficient method: one of "pearson" (default),
+"spearman", or "kendall".}
 
 \item{title}{The title for the plot.}
 }
 \value{
-A ggplot2 heatmap showing correlations.
+A ggplot heatmap. Its \code{data} contains \code{Var1}, \code{Var2}, the correlation
+\code{value}, and \code{n}, the number of complete observations for that pair.
 }
 \description{
-Computes and visualizes the correlation matrix of numeric variables in a data frame.
+Computes and visualizes numeric-variable correlations using \code{\link[stats:cor]{stats::cor()}}
+with pairwise-complete observations. Non-numeric columns are excluded.
+Infinite numeric values are rejected.
+}
+\details{
+Undefined correlations are shown in grey and cause a warning.
+A warning also identifies pairs of distinct variables with fewer than
+three complete observations. Pairwise deletion uses different rows for
+different pairs and need not produce a positive-semidefinite matrix.
+No imputation, significance testing or confidence intervals are performed.
 }
 \examples{
-data(mtcars)
 correlation_matrix_plot(mtcars, method = "pearson")
-
 }

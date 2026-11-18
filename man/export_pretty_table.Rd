@@ -17,9 +17,10 @@ export_pretty_table(df, file, format = "html")
 The file is written as a side effect.
 }
 \description{
-Export a Pretty Table from a Data Frame
+Writes a standalone HTML document with embedded table styles or a Markdown
+table. Existing files are overwritten. HTML requires no external stylesheet.
 }
 \examples{
-export_pretty_table(mtcars, "mtcars.html", format = "html")
-export_pretty_table(mtcars, "mtcars.md", format = "markdown")
+export_pretty_table(mtcars, tempfile(fileext = ".html"), format = "html")
+export_pretty_table(mtcars, tempfile(fileext = ".md"), format = "markdown")
 }

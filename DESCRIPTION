@@ -7,15 +7,13 @@ Description: Provides tools for data exploration and visualization.
     Includes functions for handling missing values, exporting data frames, 
     creating customizable scatterplots, and visualizing correlation matrices. 
     These features are designed to help users quickly analyze and present their data.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports:
     knitr,
-    kableExtra, 
     ggplot2,
-    dplyr, 
-    magrittr,
+    rlang,
     reshape2,
-    tidyr
+    stats

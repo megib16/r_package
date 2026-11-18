@@ -3,10 +3,10 @@
 #' This function creates a customizable scatter plot using ggplot2.
 #'
 #' @param data A data frame containing the data to plot.
-#' @param x_param The variable for the x-axis.
-#' @param y_param The variable for the y-axis.
-#' @param color_var An optional variable to color the points.
-#' @param shape_var An optional variable to adjust the shape of the points.
+#' @param x_param Column name (string) for the x-axis.
+#' @param y_param Column name (string) for the y-axis.
+#' @param color_var An optional column name (string) to color the points.
+#' @param shape_var An optional column name (string) to adjust point shapes.
 #' @param title The title of the plot.
 #' @param x_label A custom label for the x-axis.
 #' @param y_label A custom label for the y-axis.
@@ -18,6 +18,7 @@
 #' create_scatter_plot(mtcars, "mpg", "hp", color_var = "cyl", shape_var = "gear")
 #'
 #' @import ggplot2
+#' @importFrom rlang .data
 #' @export
 
 create_scatter_plot <- function(data,
@@ -29,16 +30,19 @@ create_scatter_plot <- function(data,
                                 x_label = NULL,
                                 y_label = NULL)
 {
+  .validate_data_frame(data)
+  .validate_column(data, x_param, "x_param")
+  .validate_column(data, y_param, "y_param")
+  if (!is.null(color_var)) .validate_column(data, color_var, "color_var")
+  if (!is.null(shape_var)) .validate_column(data, shape_var, "shape_var")
   if (!is.null(shape_var) && !is.factor(data[[shape_var]])) {
     data[[shape_var]] <- as.factor(data[[shape_var]])
   }
 
-  p <- ggplot(data,
-              aes_string(x = x_param,
-                         y = y_param,
-                         color = color_var,
-                         shape = shape_var)
-  ) +
+  mapping <- aes(x = .data[[x_param]], y = .data[[y_param]])
+  if (!is.null(color_var)) mapping$colour <- aes(colour = .data[[color_var]])$colour
+  if (!is.null(shape_var)) mapping$shape <- aes(shape = .data[[shape_var]])$shape
+  p <- ggplot(data, mapping) +
     geom_point(size = 3) +
     ggtitle(title) +
     theme_minimal() +

@@ -1,2 +1,6 @@
 ^quickstat\.Rproj$
 ^\.Rproj\.user$
+^explovis\.Rproj$
+^\.DS_Store$
+^\.Rhistory$
+^mtcars\.(html|md)$

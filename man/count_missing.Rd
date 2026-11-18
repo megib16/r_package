@@ -15,6 +15,10 @@ A data frame with the count of missing values per column.
 \description{
 Count Missing (NA) Values in Each Column
 }
+\details{
+Counts both \code{NA} and \code{NaN}, as determined by \code{\link[=is.na]{is.na()}}. Blank
+strings, infinite values and numeric sentinels are not treated as missing.
+}
 \examples{
 count_missing(mtcars)
 count_missing(airquality)

@@ -18,13 +18,13 @@ create_scatter_plot(
 \arguments{
 \item{data}{A data frame containing the data to plot.}
 
-\item{x_param}{The variable for the x-axis.}
+\item{x_param}{Column name (string) for the x-axis.}
 
-\item{y_param}{The variable for the y-axis.}
+\item{y_param}{Column name (string) for the y-axis.}
 
-\item{color_var}{An optional variable to color the points.}
+\item{color_var}{An optional column name (string) to color the points.}
 
-\item{shape_var}{An optional variable to adjust the shape of the points.}
+\item{shape_var}{An optional column name (string) to adjust point shapes.}
 
 \item{title}{The title of the plot.}
 

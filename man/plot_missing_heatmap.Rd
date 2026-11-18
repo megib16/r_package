@@ -7,13 +7,14 @@
 plot_missing_heatmap(df)
 }
 \arguments{
-\item{df}{A data frame.}
+\item{df}{A data frame with at least one row and one column.}
 }
 \value{
 A ggplot object showing a heatmap of missingness.
 }
 \description{
-Visualizes the pattern of missing data in a data frame.
+Visualizes missingness across columns of different types. Missing values
+are identified with \code{\link[=is.na]{is.na()}}; values are not imputed.
 }
 \examples{
 plot_missing_heatmap(airquality)
